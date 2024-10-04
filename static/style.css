@@ -1,0 +1,113 @@
+/* Page-wide styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    background: linear-gradient(135deg, #1f1c2c, #928DAB);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main wrapper for everything */
+.wrapper {
+    width: 100%;
+    max-width: 1200px;  /* Increased width for landscape */
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+/* Form section in landscape format */
+.form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Flexbox for input fields to make them side-by-side */
+.landscape-form .input-group-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.landscape-form .input-group {
+    width: 30%;  /* Make input groups side by side */
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+    color: #fff;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+}
+
+.input-group input:focus {
+    border-color: #50C9C3;
+    outline: none;
+}
+
+/* Centered submit button */
+.button-container {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-submit {
+    padding: 12px 20px;
+    background: #50C9C3;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 200px;  /* Make the button smaller and centered */
+}
+
+.btn-submit:hover {
+    background: #3da09d;
+}
+
+/* Result section and feedback form */
+.result, .feedback-section {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.feedback-section textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    resize: none;
+}
+
+/* Footer */
+.main-footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #cfcfcf;
+}

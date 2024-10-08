@@ -20,7 +20,7 @@ def index():
 @app.route("/predict",methods=['POST'])
 def predict():
     N = request.form['Nitrogen']
-    P = request.form['Phosporus']
+    P = request.form['Phosphorus']
     K = request.form['Potassium']
     temp = request.form['Temperature']
     humidity = request.form['Humidity']

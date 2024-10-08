@@ -9,6 +9,7 @@ model = pickle.load(open('model.pkl','rb'))
 sc = pickle.load(open('standscaler.pkl','rb'))
 ms = pickle.load(open('minmaxscaler.pkl','rb'))
 
+
 # creating flask app
 app = Flask(__name__)
 

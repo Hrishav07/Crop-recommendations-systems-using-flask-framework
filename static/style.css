@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 100%;
     margin: auto;
     overflow: hidden;
 }
@@ -113,3 +113,17 @@ footer p {
         padding: 0 20px;
     }
 }
+
+.result img {
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+/* CSS for resizing images */
+.crop-image {
+    max-width: 300px; /* Adjust the width as needed */
+    height: auto;     /* Maintains aspect ratio */
+    display: block;   /* Optional: for centering the image */
+    margin: 20px auto;
+}
+

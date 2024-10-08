@@ -1,14 +1,11 @@
-from flask import Flask,request,render_template
+from flask import Flask, request, render_template
 import numpy as np
-import pandas
-import sklearn
 import pickle
 
 # importing model
 model = pickle.load(open('model.pkl','rb'))
 sc = pickle.load(open('standscaler.pkl','rb'))
 ms = pickle.load(open('minmaxscaler.pkl','rb'))
-
 
 # creating flask app
 app = Flask(__name__)
@@ -17,7 +14,7 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/predict",methods=['POST'])
+@app.route("/predict", methods=['POST'])
 def predict():
     N = request.form['Nitrogen']
     P = request.form['Phosphorus']
@@ -39,16 +36,40 @@ def predict():
                  14: "Pomegranate", 15: "Lentil", 16: "Blackgram", 17: "Mungbean", 18: "Mothbeans",
                  19: "Pigeonpeas", 20: "Kidneybeans", 21: "Chickpea", 22: "Coffee"}
 
+    image_dict = {
+        "Rice": "images/rice.jpg",
+        "Maize": "images/maize.jpg",
+        "Jute": "images/jute.jpg",
+        "Cotton": "images/cotton.jpg",
+        "Coconut": "images/coconut.jpg",
+        "Papaya": "images/papaya.jpg",
+        "Orange": "images/orange.jpg",
+        "Apple": "images/apple.jpg",
+        "Muskmelon": "images/muskmelon.jpg",
+        "Watermelon": "images/watermelon.jpg",
+        "Grapes": "images/grapes.jpg",
+        "Mango": "images/mango.jpg",
+        "Banana": "images/banana.jpg",
+        "Pomegranate": "images/pomegranate.jpg",
+        "Lentil": "images/lentil.jpg",
+        "Blackgram": "images/blackgram.jpg",
+        "Mungbean": "images/mungbean.jpg",
+        "Mothbeans": "images/mothbeans.jpg",
+        "Pigeonpeas": "images/pigeonpeas.jpeg",
+        "Kidneybeans": "images/kidneybeans.jpg",
+        "Chickpea": "images/chickpea.jpg",
+        "Coffee": "images/coffee.jpg"
+    }
+
     if prediction[0] in crop_dict:
         crop = crop_dict[prediction[0]]
-        result = "{} is the best crop to be cultivated right there".format(crop)
+        image_file = image_dict[crop]  # Get the corresponding image file
+        result = "{} is the best crop to be cultivated right there.".format(crop)
     else:
         result = "Sorry, we could not determine the best crop to be cultivated with the provided data."
-    return render_template('index.html',result = result)
+
+    return render_template('index.html', result=result, image=image_file)
 
 
-
-
-# python main
 if __name__ == "__main__":
     app.run(debug=True)

@@ -40,7 +40,7 @@
                 </div>
                 <div class="input-group">
                     <label for="Ph">pH</label>
-                    <input type="number" id="Ph" name="Ph" step="0.01" required>
+                    <input type="number" id="Ph" name="Ph" step="0.01" min="0" max="10" required>
                 </div>
                 <div class="input-group">
                     <label for="Rainfall">Rainfall (mm)</label>
@@ -48,9 +48,13 @@
                 </div>
                 <button type="submit" class="btn">Predict Best Crop</button>
             </form>
+
             <div class="result">
                 {% if result %}
                     <h3>{{ result }}</h3>
+                    {% if image %}
+                        <img src="{{ url_for('static', filename=image) }}" alt="Crop Image" class="crop-image">
+                    {% endif %}
                 {% endif %}
             </div>
         </div>

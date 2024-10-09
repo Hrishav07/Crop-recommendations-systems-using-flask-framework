@@ -8,7 +8,14 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-image: url('images/background4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
     color: #333;
 }
 
@@ -23,11 +30,14 @@ header {
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
 }
 
 h1 {
     font-size: 36px;
     margin-bottom: 10px;
+    text-transform: uppercase; /* Make the header text uppercase */
+    letter-spacing: 2px;
 }
 
 .form-section {
@@ -38,19 +48,22 @@ h1 {
 h2 {
     font-size: 28px;
     margin-bottom: 20px;
-    color: #333;
+    color: #555; /* Slightly darker text */
+    text-transform: uppercase; /* Make section titles uppercase */
+    letter-spacing: 1.5px;
+    font-weight: bold;
 }
 
 .form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    max-width: 600px;
+    max-width: 700px; /* Slightly wider for more space */
     margin: auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9); /* Make background semi-transparent */
+    padding: 30px; /* Increase padding for spacing */
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow for more depth */
 }
 
 .input-group {
@@ -62,13 +75,25 @@ h2 {
     font-size: 16px;
     margin-bottom: 8px;
     font-weight: bold;
+    color: #444;
+    transition: color 0.3s ease; /* Smooth hover transition */
 }
 
 .input-group input {
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
+    transition: border-color 0.3s ease; /* Smooth hover transition */
+}
+
+.input-group input:focus {
+    border-color: #5cb85c; /* Change border color on focus */
+    outline: none;
+}
+
+.input-group label:hover {
+    color: #5cb85c; /* Change label color on hover */
 }
 
 .btn {
@@ -79,23 +104,30 @@ h2 {
     font-size: 18px;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow to the button */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth hover transition */
 }
 
 .btn:hover {
     background: #4cae4c;
+    transform: translateY(-2px); /* Lift button slightly on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Deepen shadow on hover */
 }
 
 .result {
     margin-top: 20px;
+    text-align: center;
 }
 
 footer {
     background: #333;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 15px 0; /* Increased padding for better spacing */
     margin-top: 40px;
+    font-size: 14px;
+    letter-spacing: 1px; /* Slightly spaced-out footer text */
 }
 
 footer p {
@@ -127,3 +159,7 @@ footer p {
     margin: 20px auto;
 }
 
+/* Additional hover effects */
+input:hover {
+    border-color: #5cb85c; /* Add hover effect to inputs */
+}

@@ -65,9 +65,9 @@ def predict():
     if prediction[0] in crop_dict:
         crop = crop_dict[prediction[0]]
         image_file = image_dict[crop]  # Get the corresponding image file
-        result = "{} is the best crop to be cultivated right there.".format(crop)
+        result = "{} is the best crop to be cultivated here.".format(crop)
     else:
-        result = "Sorry, we could not determine the best crop to be cultivated with the provided data."
+        result = "Sorry, I can't provide prediction on the provided data."
 
     return render_template('index.html', result=result, image=image_file)
 

@@ -48,7 +48,7 @@ h1 {
 h2 {
     font-size: 28px;
     margin-bottom: 20px;
-    color: #555; /* Slightly darker text */
+    color: #ffffff; /* Slightly darker text */
     text-transform: uppercase; /* Make section titles uppercase */
     letter-spacing: 1.5px;
     font-weight: bold;
@@ -118,6 +118,7 @@ h2 {
 .result {
     margin-top: 20px;
     text-align: center;
+    color: #ffffff
 }
 
 footer {

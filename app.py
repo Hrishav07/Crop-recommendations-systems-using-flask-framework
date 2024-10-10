@@ -1,6 +1,7 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template,jsonify
 import numpy as np
 import pickle
+import datetime
 
 # importing model
 model = pickle.load(open('model.pkl','rb'))

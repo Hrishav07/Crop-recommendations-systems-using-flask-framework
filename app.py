@@ -1,15 +1,18 @@
-from flask import Flask, request, render_template,jsonify
+from flask import Flask, render_template, request, jsonify  # Use request from Flask
 import numpy as np
 import pickle
 import datetime
+import requests  # For making API calls
 
-# importing model
-model = pickle.load(open('model.pkl','rb'))
-sc = pickle.load(open('standscaler.pkl','rb'))
-ms = pickle.load(open('minmaxscaler.pkl','rb'))
+# Importing model
+model = pickle.load(open('model.pkl', 'rb'))
+sc = pickle.load(open('standscaler.pkl', 'rb'))
+ms = pickle.load(open('minmaxscaler.pkl', 'rb'))
 
-# creating flask app
+# Creating Flask app
 app = Flask(__name__)
+
+API_KEY = ''
 
 @app.route('/')
 def index():
@@ -64,13 +67,57 @@ def predict():
 
     if prediction[0] in crop_dict:
         crop = crop_dict[prediction[0]]
-        image_file = image_dict[crop]  # Get the corresponding image file
-        result = "{} is the best crop to be cultivated here.".format(crop)
+        image_file = image_dict[crop]
+        result = f"{crop} is the best crop to be cultivated here."
     else:
         result = "Sorry, I can't provide prediction on the provided data."
 
     return render_template('index.html', result=result, image=image_file)
 
+@app.route('/historical_data', methods=['POST'])
+def historical_data():
+    lat = request.form['lat']
+    lon = request.form['lon']
+    start_date = request.form['start_date']
+    end_date = request.form['end_date']
+
+    # Convert dates to UNIX timestamps
+    start_timestamp = int(datetime.datetime.strptime(start_date, "%Y-%m-%d").timestamp())
+    end_timestamp = int(datetime.datetime.strptime(end_date, "%Y-%m-%d").timestamp())
+
+    historical_data = {
+        "temperature": [],
+        "humidity": [],
+        "rainfall": []
+    }
+
+    current_timestamp = start_timestamp
+    while current_timestamp <= end_timestamp:
+        api_url = (
+            f"https://api.openweathermap.org/data/3.0/onecall/timemachine?"
+            f"lat={lat}&lon={lon}&dt={current_timestamp}&appid={API_KEY}&units=metric"
+        )
+
+        response = requests.get(api_url)
+        if response.status_code == 200:
+            data = response.json()
+            current_weather = data.get('current', {})
+
+            # Safely get weather values with defaults
+            temp = current_weather.get('temp', 'N/A')
+            humidity = current_weather.get('humidity', 'N/A')
+            rain = current_weather.get('rain', {}).get('1h', 0)
+
+            historical_data["temperature"].append(temp)
+            historical_data["humidity"].append(humidity)
+            historical_data["rainfall"].append(rain)
+        else:
+            print(f"API call failed with status code {response.status_code}")
+            return jsonify({'error': 'Failed to fetch historical data'}), 500
+
+        current_timestamp += 86400  # Move to the next day
+
+    return render_template('index.html', historical_data=historical_data)
 
 if __name__ == "__main__":
     app.run(debug=True)

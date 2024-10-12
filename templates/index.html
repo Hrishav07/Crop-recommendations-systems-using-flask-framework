@@ -49,6 +49,27 @@
                 <button type="submit" class="btn">Predict Best Crop</button>
             </form>
 
+            <div class="form-section">
+            <h2>Get Historical Weather</h2>
+            <form method="POST" action="/historical_data">
+                <input type="text" name="lat" placeholder="Latitude" required>
+                <input type="text" name="lon" placeholder="Longitude" required>
+                <input type="date" name="start_date" required>
+                <input type="date" name="end_date" required>
+                <button type="submit" class="btn">Get Historical Weather</button>
+            </form>
+        </div>
+
+        {% if historical_data %}
+        <div class="result">
+            <h2>Historical Weather Data</h2>
+            <p><strong>Temperature:</strong> {{ historical_data.temperature }}</p>
+            <p><strong>Humidity:</strong> {{ historical_data.humidity }}</p>
+            <p><strong>Rainfall:</strong> {{ historical_data.rainfall }}</p>
+        </div>
+        {% endif %}
+    </div>
+
             <div class="result">
                 {% if result %}
                     <h3>{{ result }}</h3>

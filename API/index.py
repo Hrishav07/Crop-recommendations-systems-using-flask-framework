@@ -10,6 +10,7 @@ ms = pickle.load(open('minmaxscaler.pkl','rb'))
 
 # creating flask app
 app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates",static_folder='../static')
 
 @app.route('/')
 def index():
@@ -74,7 +75,7 @@ def predict():
 def realtime_weather():
     lat = request.form['lat']
     lon = request.form['lon']
-    api_key = 'c69014a31226004f6f7759c671c56432'
+    api_key = ''
     url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric'
 
     response = requests.get(url)

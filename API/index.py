@@ -68,14 +68,14 @@ def predict():
         image_file = image_dict[crop]  # Get the corresponding image file
         result = "{} is the best crop to be cultivated right there.".format(crop)
     else:
-        result = "Sorry, we could not determine the best crop to be cultivated with the provided data."
+        result = "Sorry,I could not determine the best crop to be cultivated with the provided data."
 
     return render_template('index.html', result=result, image=image_file)
 @app.route('/realtime_weather', methods=['POST'])
 def realtime_weather():
     lat = request.form['lat']
     lon = request.form['lon']
-    api_key = ''
+    api_key = 'cd613ea442e1b7d2124afc1346450a95'
     url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric'
 
     response = requests.get(url)

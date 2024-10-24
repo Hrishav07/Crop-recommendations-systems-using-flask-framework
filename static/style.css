@@ -316,5 +316,29 @@ input:hover {
 .feedback-display li strong {
     color: #007BFF; /* Color for the name */
 }
+flashMessages {
+    text-align: center; /* Center the message */
+    margin: 20px 0; /* Add some margin for spacing */
+}
+
+.flash {
+    display: inline-block; /* Make the flash message inline-block for centering */
+    padding: 10px 20px; /* Add padding for better appearance */
+    border-radius: 5px; /* Round the corners */
+}
+
+.flash.success {
+    background-color: #d4edda; /* Light green background for success */
+    color: #155724; /* Dark green text color */
+    font-family: 'Arial', sans-serif; /* Change the font */
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+.flash.error {
+    background-color: #f8d7da; /* Light red background for error */
+    color: #721c24; /* Dark red text color */
+    font-family: 'Arial', sans-serif; /* Change the font */
+    font-size: 16px; /* Adjust the font size as needed */
+}
 
 }

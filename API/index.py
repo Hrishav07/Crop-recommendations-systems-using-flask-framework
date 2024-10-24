@@ -1,7 +1,9 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, flash, redirect
 import numpy as np
 import pickle
 import requests
+import mysql.connector
+import os
 
 # importing model
 model = pickle.load(open('model.pkl','rb'))
@@ -11,6 +13,32 @@ ms = pickle.load(open('minmaxscaler.pkl','rb'))
 # creating flask app
 app = Flask(__name__)
 app = Flask(__name__, template_folder="../templates",static_folder='../static')
+app.secret_key = os.urandom(24)
+def get_db_connection():
+    return mysql.connector.connect(
+        host="localhost",
+        user="Bett",
+        password="",
+        database="crop_feedback"
+    )
+@app.route('/feedback', methods=['POST'])
+def feedback():
+    name = request.form['name']
+    email = request.form['email']
+    feedback_text = request.form['feedback']
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO feedback (name, email, feedback_text) VALUES (%s, %s, %s)",
+        (name, email, feedback_text)
+    )
+    conn.commit()
+    conn.close()
+
+    flash("Thank you for your feedback!", "success")
+    return redirect('/')  # Redirect to home after successful submission
+
 
 @app.route('/')
 def index():
@@ -75,7 +103,7 @@ def predict():
 def realtime_weather():
     lat = request.form['lat']
     lon = request.form['lon']
-    api_key = 'cd613ea442e1b7d2124afc1346450a95'
+    api_key = ''
     url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric'
 
     response = requests.get(url)

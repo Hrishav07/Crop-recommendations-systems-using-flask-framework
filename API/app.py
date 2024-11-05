@@ -4,6 +4,8 @@ import pickle
 import requests
 import mysql.connector
 import os
+from flask import Flask
+from flask_cors import CORS
 
 # importing model
 model = pickle.load(open('model.pkl','rb'))
@@ -11,6 +13,8 @@ sc = pickle.load(open('standscaler.pkl','rb'))
 ms = pickle.load(open('minmaxscaler.pkl','rb'))
 
 # creating flask app
+app = Flask(__name__)
+CORS(app)
 app = Flask(__name__)
 app = Flask(__name__, template_folder="../templates",static_folder='../static')
 app.secret_key = os.urandom(24)

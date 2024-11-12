@@ -65,11 +65,11 @@
         <form method="POST" action="/realtime_weather" class="form">
             <div class="input-group">
                 <label for="lat">Latitude:</label>
-                <input type="number" id="lat" name="lat" placeholder="Enter latitude" required>
+                <input type="number" id="lat" step="0.0001" name="lat" placeholder="Enter latitude" required>
             </div>
             <div class="input-group">
                 <label for="lon">Longitude:</label>
-                <input type="number" id="lon" name="lon" placeholder="Enter longitude" required>
+                <input type="number" id="lon" step="0.0001" name="lon" placeholder="Enter longitude" required>
             </div>
             <button type="submit" class="btn">Get Weather</button>
         </form>

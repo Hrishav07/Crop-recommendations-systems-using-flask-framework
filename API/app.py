@@ -107,7 +107,7 @@ def predict():
 def realtime_weather():
     lat = request.form['lat']
     lon = request.form['lon']
-    api_key = 'cd613ea442e1b7d2124afc1346450a95'
+    api_key = os.getenv('API_KEY')
     url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric'
 
     response = requests.get(url)

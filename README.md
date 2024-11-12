@@ -47,7 +47,7 @@ This project is a **Crop Recommendation System** built using **Flask**. It lever
    conda activate crop-env
    pip install -r requirements.txt
    ```
-4. **Run the Flask app:**
+4. **Run the Flask app,:**
    ```bash
    python app.py
    ```

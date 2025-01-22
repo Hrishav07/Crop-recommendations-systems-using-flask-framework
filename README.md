@@ -13,7 +13,7 @@ This project is a **Crop Recommendation System** built using **Flask**. It lever
   - Rainfall (mm)  
 - **Prediction Output**: Recommends the most suitable crop.  
 - **Crop Images**: Displays the predicted crop’s image from the `/static/images/` folder.
-- **OpenWeather API Integration**: Retrieve weather data for precise recommendations and weather.
+- **OpenWeather API Integration**: Retrieve weather data for precise recommendations and weather updates.
 
 ## Technologies Used 💻
 - **Python** (Flask, scikit-learn)  

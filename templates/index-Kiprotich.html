@@ -61,50 +61,30 @@
     </section>
     <section class="form-section">
     <div class="container">
-    <h2>Get Real-Time Weather Updates</h2>
-    <form method="POST" action="/realtime_weather" class="form">
-        <div class="input-group">
-            <label for="lat">Latitude:</label>
-            <input type="text" id="lat" name="lat" placeholder="Enter latitude" required>
-        </div>
-        <div class="input-group">
-            <label for="lon">Longitude:</label>
-            <input type="text" id="lon" name="lon" placeholder="Enter longitude" required>
-        </div>
-        <!-- Button to populate location -->
-        <button type="button" id="detect-location" class="btn">Use My Location</button>
-        <!-- Button to submit the form -->
-        <button type="submit" class="btn">Get Weather</button>
-    </form>
+        <h2>Get Real-Time Weather Updates</h2>
+        <form method="POST" action="/realtime_weather" class="form">
+            <div class="input-group">
+                <label for="lat">Latitude:</label>
+                <input type="number" id="lat" step="0.0001" name="lat" placeholder="Enter latitude" required>
+            </div>
+            <div class="input-group">
+                <label for="lon">Longitude:</label>
+                <input type="number" id="lon" step="0.0001" name="lon" placeholder="Enter longitude" required>
+            </div>
+            <button type="submit" class="btn">Get Weather</button>
+        </form>
 
-    {% if weather_data %}
-    <div class="weather-results">
-        <h3>Current Weather:</h3>
-        <p><strong>Temperature:</strong> {{ weather_data.temperature }} °C</p>
-        <p><strong>Humidity:</strong> {{ weather_data.humidity }}%</p>
-        <p><strong>Description:</strong> {{ weather_data.description }}</p>
-        <p><strong>Wind Speed:</strong> {{ weather_data.wind_speed }} m/s</p>
+        {% if weather_data %}
+        <div class="weather-results">
+            <h3>Current Weather:</h3>
+            <p><strong>Temperature:</strong> {{ weather_data.temperature }} °C</p>
+            <p><strong>Humidity:</strong> {{ weather_data.humidity }}%</p>
+            <p><strong>Description:</strong> {{ weather_data.description }}</p>
+            <p><strong>Wind Speed:</strong> {{ weather_data.wind_speed }} m/s</p>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
-</div>
-
-<script>
-    document.getElementById('detect-location').addEventListener('click', () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                document.getElementById('lat').value = position.coords.latitude;
-                document.getElementById('lon').value = position.coords.longitude;
-                alert('Location detected! Now click "Get Weather" to fetch updates.');
-            }, (error) => {
-                alert('Unable to retrieve your location. Please check permissions.');
-            });
-        } else {
-            alert('Geolocation is not supported by this browser.');
-        }
-    });
-</script>
-
-
+</section>
     <section class="form-section">
         <h2 class="feedback-heading">Give Feedback</h2>
     <div class="feedback-section">

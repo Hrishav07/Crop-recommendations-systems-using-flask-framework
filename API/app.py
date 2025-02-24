@@ -22,7 +22,7 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="Bett",
-        password="",
+        password="kiprotich8653",
         database="crop_feedback"
     )
 @app.route('/feedback', methods=['POST'])
@@ -107,7 +107,7 @@ def predict():
 def realtime_weather():
     lat = request.form['lat']
     lon = request.form['lon']
-    api_key = ''
+    api_key = os.getenv('API_KEY')
     url = f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric'
 
     response = requests.get(url)

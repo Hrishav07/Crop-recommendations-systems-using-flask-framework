@@ -59,7 +59,7 @@
             </div>
         </div>
     </section>
-    <section class="form-section">
+   <section class="form-section">
     <div class="container">
         <h2>Get Real-Time Weather Updates</h2>
         <form method="POST" action="/realtime_weather" class="form">
@@ -71,6 +71,7 @@
                 <label for="lon">Longitude:</label>
                 <input type="text" id="lon" name="lon" placeholder="Enter longitude" required>
             </div>
+            <button type="button" class="btn" onclick="getLocation()">Use My Location</button>
             <button type="submit" class="btn">Get Weather</button>
         </form>
 
@@ -85,6 +86,23 @@
         {% endif %}
     </div>
 </section>
+
+<script>
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            document.getElementById("lat").value = position.coords.latitude;
+            document.getElementById("lon").value = position.coords.longitude;
+        }, function(error) {
+            alert("Geolocation Error: " + error.message);
+        });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+</script>
+
+
     <section class="form-section">
         <h2 class="feedback-heading">Give Feedback</h2>
     <div class="feedback-section">

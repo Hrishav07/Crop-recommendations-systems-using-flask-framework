@@ -2,14 +2,9 @@ from flask import Flask, request, render_template, flash, redirect
 import numpy as np
 import pickle
 import requests
-<<<<<<< Updated upstream:API/app.py
 import mysql.connector
 import os
-from flask import Flask
 from flask_cors import CORS
-=======
-import os
->>>>>>> Stashed changes:API/index.py
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -107,7 +102,6 @@ def predict():
         result = "Sorry,I could not determine the best crop to be cultivated with the provided data."
 
     return render_template('index.html', result=result, image=image_file)
-<<<<<<< Updated upstream:API/app.py
 @app.route('/realtime_weather', methods=['POST'])
 def realtime_weather():
     lat = request.form['lat']
@@ -132,8 +126,6 @@ def realtime_weather():
         }, result=None)  # Return to the same template with weather data
     else:
         return render_template('index.html', error="Failed to get weather data.", result=None)
-=======
->>>>>>> Stashed changes:API/index.py
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -2,17 +2,21 @@ from flask import Flask, request, render_template, flash, redirect
 import numpy as np
 import pickle
 import requests
+<<<<<<< Updated upstream:API/app.py
 import mysql.connector
 import os
 from flask import Flask
 from flask_cors import CORS
+=======
+import os
+>>>>>>> Stashed changes:API/index.py
 
-# importing model
-model = pickle.load(open('model.pkl','rb'))
-sc = pickle.load(open('standscaler.pkl','rb'))
-ms = pickle.load(open('minmaxscaler.pkl','rb'))
+base_dir = os.path.dirname(os.path.abspath(__file__))
 
-# creating flask app
+model = pickle.load(open(os.path.join(base_dir, 'model.pkl'), 'rb'))
+sc = pickle.load(open(os.path.join(base_dir, 'standscaler.pkl'), 'rb'))
+ms = pickle.load(open(os.path.join(base_dir, 'minmaxscaler.pkl'), 'rb'))
+
 app = Flask(__name__)
 CORS(app)
 app = Flask(__name__)
@@ -97,12 +101,13 @@ def predict():
 
     if prediction[0] in crop_dict:
         crop = crop_dict[prediction[0]]
-        image_file = image_dict[crop]  # Get the corresponding image file
+        image_file = image_dict[crop]  
         result = "{} is the best crop to be cultivated right there.".format(crop)
     else:
         result = "Sorry,I could not determine the best crop to be cultivated with the provided data."
 
     return render_template('index.html', result=result, image=image_file)
+<<<<<<< Updated upstream:API/app.py
 @app.route('/realtime_weather', methods=['POST'])
 def realtime_weather():
     lat = request.form['lat']
@@ -127,6 +132,8 @@ def realtime_weather():
         }, result=None)  # Return to the same template with weather data
     else:
         return render_template('index.html', error="Failed to get weather data.", result=None)
+=======
+>>>>>>> Stashed changes:API/index.py
 
 if __name__ == "__main__":
     app.run(debug=True)
